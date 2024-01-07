@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-pod
+spec:
+  containers:
+  - name: volume-pod-cont
+    image: nginx:latest
+    command: ['sh', '-c', 'echo Success! > /output/success.txt']
+    volumeMounts:
+    - name: hostpath-volume
+      mountPath: /output
+  volumes:
+  - name: hostpath-volume
+    hostPath:
+      path: /var/data
+
